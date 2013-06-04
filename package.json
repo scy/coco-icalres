@@ -1,8 +1,16 @@
 {
 	"name": "coco-icalres",
-	"version": "0.1.0+git",
-	"devDependencies": {
+	"version": "0.1.0",
+	"author": "Tim Weber <tim.weber@cocomore.com>",
+	"description": "creates iCal data based on the resource planning information",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/scy/coco-icalres.git"
+	},
+	"dependencies": {
 		"icalevent": "~0.0.2",
 		"sqlite3": "~2.1"
-	}
+	},
+	"keywords": [ "Cocomore", "resource", "planning", "iCal" ]
 }
