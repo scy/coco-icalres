@@ -1,0 +1,8 @@
+{
+	"name": "coco-icalres",
+	"version": "0.1.0+git",
+	"devDependencies": {
+		"icalevent": "~0.0.2",
+		"sqlite3": "~2.1"
+	}
+}
