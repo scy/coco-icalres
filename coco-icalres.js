@@ -53,6 +53,7 @@ db.each('SELECT * FROM slots WHERE username = (?)', user, function (err, row) {
 		}
 	}
 	var out = 'BEGIN:VCALENDAR\n';
+	out += 'X-WR-CALNAME:Cocomore Ressourcen für ' + user + '\n';
 	events.forEach(function (ev) {
 		out += 'BEGIN:VEVENT\n';
 		out += 'UID:coco-icalres-' + uidUser + '-' + ev.dt + '@cocomore.com\n';
