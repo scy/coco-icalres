@@ -15,9 +15,9 @@ You need Node.js, of course.
 
 ## Usage
 
-Supply the employee you want to create the iCal for as command line parameter. I use a cronjob like this to create it and publish it on the web for Google Calendar to find it:
+Supply the employee you want to create the iCal for as command line parameter. I use a cronjob and the supplied update.sh script like this to create it and publish it on the web for Google Calendar to find it:
 
-    cd "$HOME/proj/coco-icalres" && curl -sO "$url_to_sqlite_db" && node coco-icalres.js 'Tim Weber' | ssh "$somewhere" 'cat > SOMEPATH' 2>/dev/null
+    cd "$HOME/proj/coco-icalres" && ./update.sh "$url_to_sqlite_db" 'Tim Weber' "$some_host" "$some_path"
 
 ## Author
 

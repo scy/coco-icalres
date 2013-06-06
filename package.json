@@ -1,6 +1,6 @@
 {
 	"name": "coco-icalres",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"author": "Tim Weber <tim.weber@cocomore.com>",
 	"description": "creates iCal data based on the resource planning information",
 	"license": "MIT",
