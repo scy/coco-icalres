@@ -12,6 +12,8 @@ var uidUser = user.replace(/[^a-zA-Z]/g, '');
 var days = {};
 var events = [];
 
+var started = '' + (new Date());
+
 db.each('SELECT * FROM days WHERE username = (?)', user, function (err, row) {
 	if (err) {
 		console.log(err);
@@ -62,6 +64,7 @@ db.each('SELECT * FROM days WHERE username = (?)', user, function (err, row) {
 		out += 'BEGIN:VEVENT\n';
 		out += 'UID:coco-icalres-' + uidUser + '-' + ev.dt + '@cocomore.com\n';
 		out += 'SUMMARY:' + ev.summary + '\n';
+		out += 'DESCRIPTION:Updated ' + started + '\n';
 		out += 'DTSTART:' + ev.dt + '\n';
 		out += 'END:VEVENT\n';
 	});
