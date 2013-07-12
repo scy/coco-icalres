@@ -12,15 +12,19 @@ var uidUser = user.replace(/[^a-zA-Z]/g, '');
 var days = {};
 var events = [];
 
-db.each('SELECT * FROM slots WHERE username = (?)', user, function (err, row) {
+db.each('SELECT * FROM days WHERE username = (?)', user, function (err, row) {
 	if (err) {
 		console.log(err);
 		return;
 	}
-	if (!days[row.day]) {
-		days[row.day] = [];
+	var slotsArray = [], slots = JSON.parse(row.slots);
+	for (var slot in slots) {
+		if (!row.slots.hasOwnProperty(slot)) {
+			continue;
+		}
+		slotsArray[parseInt(slot, 10)] = slots[slot];
 	}
-	days[row.day][row.slot] = row.assignment;
+	days[row.day] = slotsArray;
 }, function (err, count) {
 	for (var date in days) {
 		if (!days.hasOwnProperty(date)) {
