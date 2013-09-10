@@ -14,19 +14,29 @@ var events = [];
 
 var started = '' + (new Date());
 
+var isTask = function (task) {
+	return task !== '' && task !== '---';
+}
+
 db.each('SELECT * FROM days WHERE username = (?)', user, function (err, row) {
 	if (err) {
 		console.log(err);
 		return;
 	}
-	var slotsArray = [], slots = JSON.parse(row.slots);
+	var slotsArray = [], slots = JSON.parse(row.slots), hasATask = false;
 	for (var slot in slots) {
 		if (!row.slots.hasOwnProperty(slot)) {
 			continue;
 		}
+		if (isTask(slots[slot])) {
+			hasATask = true;
+		}
 		slotsArray[parseInt(slot, 10)] = slots[slot];
 	}
-	days[row.day] = slotsArray;
+	// If this is an empty record, only save it if the day in question is not set yet.
+	if (hasATask || !days[row.day]) {
+		days[row.day] = slotsArray;
+	}
 }, function (err, count) {
 	for (var date in days) {
 		if (!days.hasOwnProperty(date)) {
@@ -35,7 +45,7 @@ db.each('SELECT * FROM days WHERE username = (?)', user, function (err, row) {
 		var percentage = {};
 		var hasTask = false;
 		days[date].forEach(function (task, idx) {
-			if (task === '' || task === '---') {
+			if (!isTask(task)) {
 				return;
 			}
 			hasTask = true;
