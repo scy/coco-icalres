@@ -4,7 +4,8 @@
 var icalevent = require('icalevent');
 
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('resources.sqlite');
+var dbfile = ('dbfile' in process.env) ? process.env.dbfile : 'resources.sqlite';
+var db = new sqlite3.Database(dbfile);
 
 var user = process.argv[2];
 var uidUser = user.replace(/[^a-zA-Z]/g, '');
