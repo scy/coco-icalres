@@ -1,0 +1,3 @@
+[submodule "olav-resources"]
+	path = olav-resources
+	url = https://github.com/oschettler/resources
