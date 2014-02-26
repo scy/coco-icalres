@@ -16,7 +16,7 @@ var events = [];
 var started = '' + (new Date());
 
 var isTask = function (task) {
-	return task !== '' && task !== '---';
+	return task !== '' && task !== '---' && task !== null;
 }
 
 db.each('SELECT * FROM days WHERE username = (?)', user, function (err, row) {
