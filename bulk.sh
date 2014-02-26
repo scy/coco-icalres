@@ -25,6 +25,7 @@ fi
 mkdir -p "$outdir"
 
 : >"$mapping"
+echo "AddType 'text/calendar; charset=UTF-8' ics" >"$outdir/.htaccess"
 
 echo 'SELECT DISTINCT username FROM days;' | sqlite3 "$dbfile" | while read -r employee; do
 	outfile="$(echo "$secret$employee" | sha1sum | cut -b 1-40).ics"
